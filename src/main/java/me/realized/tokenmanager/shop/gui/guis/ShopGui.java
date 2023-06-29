@@ -77,7 +77,17 @@ public class ShopGui extends BaseGui {
             return false;
         }
 
-        if (data.isUsePermission() && !(player.hasPermission(Permissions.SHOP + slotInfo) || player.hasPermission(Permissions.SHOP_SLOT_OLD + slotInfo))) {
+        boolean permission = false;
+        if(data.getPermissionName() != null && !data.getPermissionName().isEmpty()) { // we have a custom permission name
+            permission = player.hasPermission(data.getPermissionName());
+        } else { // use fixed names
+            permission = (player.hasPermission(Permissions.SHOP + slotInfo) || player.hasPermission(Permissions.SHOP_SLOT_OLD + slotInfo));
+        }
+        if (data.isNegativePermission()) {
+            permission = !permission;
+        }
+
+        if (data.isUsePermission() && !permission) {
             plugin.doSync(player::closeInventory);
             lang.sendMessage(player, true, "ERROR.no-permission", "permission", Permissions.SHOP + slotInfo);
             return false;

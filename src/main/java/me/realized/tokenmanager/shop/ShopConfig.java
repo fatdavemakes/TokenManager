@@ -57,7 +57,8 @@ public class ShopConfig extends AbstractConfiguration<TokenManagerPlugin> implem
                     shopSection.getInt("rows", 1),
                     shopSection.getBoolean("auto-close", false),
                     shopSection.getBoolean("use-permission", false),
-                    shopSection.getBoolean("confirm-purchase", false)
+                    shopSection.getBoolean("confirm-purchase", false),
+                    shopSection.getBoolean("close-on-permission-fail", false)
                 );
             } catch (IllegalArgumentException ex) {
                 Log.error(this, "Failed to initialize shop '" + name + "': " + ex.getMessage());
@@ -117,7 +118,9 @@ public class ShopConfig extends AbstractConfiguration<TokenManagerPlugin> implem
                         slotSection.getString("subshop"),
                         slotSection.getStringList("commands"),
                         slotSection.getBoolean("use-permission", false),
-                        slotSection.getBoolean("confirm-purchase", false)
+                        slotSection.getBoolean("confirm-purchase", false),
+                        slotSection.getString("permission-name"),
+                        slotSection.getBoolean("negative-permission", false)
                     ));
                 }
             }

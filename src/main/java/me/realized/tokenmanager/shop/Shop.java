@@ -23,10 +23,12 @@ public class Shop {
     private final boolean usePermission;
     @Getter
     private final boolean confirmPurchase;
+    @Getter
+    private final boolean closeOnPermissionFail;
 
     private Map<Integer, Slot> slots;
 
-    public Shop(final String name, final String title, final int rows, final boolean autoClose, final boolean usePermission, final boolean confirmPurchase)
+    public Shop(final String name, final String title, final int rows, final boolean autoClose, final boolean usePermission, final boolean confirmPurchase, final boolean closeOnPermissionFail)
         throws IllegalArgumentException {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name is null or empty.");
@@ -51,6 +53,7 @@ public class Shop {
         this.autoClose = autoClose;
         this.usePermission = usePermission;
         this.confirmPurchase = confirmPurchase;
+        this.closeOnPermissionFail = closeOnPermissionFail;
     }
 
     public String getTitle() {

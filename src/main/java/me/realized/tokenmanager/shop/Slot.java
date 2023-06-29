@@ -44,9 +44,13 @@ public class Slot {
     private final boolean usePermission;
     @Getter
     private final boolean confirmPurchase;
+    @Getter
+    private final String permissionName;
+    @Getter
+    private final boolean negativePermission;
 
     public Slot(final TokenManagerPlugin plugin, final Shop shop, final int slot, final int cost, final int emptySlotsRequired, final ItemStack displayed, final String message, final String subshop,
-        final List<String> commands, final boolean usePermission, final boolean confirmPurchase) {
+        final List<String> commands, final boolean usePermission, final boolean confirmPurchase, final String permissionName, final boolean negativePermission) {
         this.plugin = plugin;
         this.config = plugin.getConfiguration();
         this.shop = shop;
@@ -59,6 +63,8 @@ public class Slot {
         this.commands = commands;
         this.usePermission = usePermission;
         this.confirmPurchase = confirmPurchase;
+        this.permissionName = permissionName;
+        this.negativePermission = negativePermission;
         commands.replaceAll(command -> {
             command = Placeholders.replace(command, cost, "price", "cost");
 
@@ -135,6 +141,9 @@ public class Slot {
 
             if (target.isUsePermission() && !player.hasPermission(Permissions.SHOP + target.getName())) {
                 plugin.getLang().sendMessage(player, true, "ERROR.no-permission", "permission", Permissions.SHOP + target.getName());
+                if (target.isCloseOnPermissionFail()) {
+                    plugin.doSync(player::closeInventory);
+                }
                 return true;
             }
 

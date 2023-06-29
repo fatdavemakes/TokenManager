@@ -84,7 +84,7 @@ public class TokenManagerPlugin extends JavaPlugin implements TokenManager, List
         new TMCommand(this).register();
         new TokenCommand(this).register();
 
-        new Metrics(this, 2421);
+        //new Metrics(this, 2421);
 
         if (!configuration.isCheckForUpdates()) {
             return;
