@@ -5,7 +5,7 @@ COMMANDPREFIX ?=
 COMMANDSUFFIX ?=
 PERMISSIONPREFIX ?=
 PERMISSIONSUFFIX ?=
-all:
+all: buildflags
 	@echo Date: $(DATE)
 	@echo Build Name: $(PLUGINBUILDNAME)
 	@echo Version Number: $(VERSIONNUMBER)
@@ -23,6 +23,21 @@ all:
 	sed -i 's/PLUGINBUILDNAME/$(PLUGINBUILDNAME)/g' ./settings.gradle
 	sh -c "./gradlew -i -Pversion=$(VERSIONNUMBER) build"
 
+#There might be a nicer way to do with gradle but I haven't looked and this is
+#a nice quick hack
+buildflags:
+	@echo "package me.realized.tokenmanager;" > src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public final class BuildFlags {" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public static final String PLUGINBUILDNAME = \"$(PLUGINBUILDNAME)\";" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public static final String COMMANDPREFIX = \"$(COMMANDPREFIX)\";" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public static final String COMMANDSUFFIX = \"$(COMMANDSUFFIX)\";" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public static final String PERMISSIONPREFIX = \"$(PERMISSIONPREFIX)\";" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "public static final String PERMISSIONSUFFIX = \"$(PERMISSIONSUFFIX)\";" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	@echo "}" >>  src/main/java/me/realized/tokenmanager/BuildFlags.java
+	
+	@echo "BUILD FLAGS FILE:"
+	@cat src/main/java/me/realized/tokenmanager/BuildFlags.java
 
 clean:
 	sh -c "./gradlew clean"

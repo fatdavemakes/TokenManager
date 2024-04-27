@@ -1,8 +1,9 @@
 package me.realized.tokenmanager;
 
+import me.realized.tokenmanager.BuildFlags;
 public final class Permissions {
 
-    private static final String PREFIX = "tokenmanager.";
+    private static final String PREFIX = BuildFlags.PERMISSIONPREFIX + "tokenmanager" + BuildFlags.PERMISSIONSUFFIX + ".";
 
     public static final String CMD_TOKEN = PREFIX + "use";
     public static final String CMD_ADMIN = PREFIX + "admin";

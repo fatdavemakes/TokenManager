@@ -12,13 +12,14 @@ import me.realized.tokenmanager.command.commands.subcommands.ShopsCommand;
 import me.realized.tokenmanager.command.commands.subcommands.TopCommand;
 import me.realized.tokenmanager.command.commands.subcommands.VersionCommand;
 import me.realized.tokenmanager.command.commands.subcommands.WorthCommand;
+import me.realized.tokenmanager.BuildFlags;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class TokenCommand extends BaseCommand {
 
     public TokenCommand(final TokenManagerPlugin plugin) {
-        super(plugin, "token", Permissions.CMD_TOKEN, false);
+        super(plugin, BuildFlags.COMMANDPREFIX  + "token" + BuildFlags.COMMANDSUFFIX, Permissions.CMD_TOKEN, false);
         child(
             new BalanceCommand(plugin),
             new SendCommand(plugin),

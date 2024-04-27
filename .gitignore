@@ -5,3 +5,4 @@ build/
 out/
 src/main/resources/plugin.yml
 settings.gradle
+src/main/java/me/realized/tokenmanager/BuildFlags.java

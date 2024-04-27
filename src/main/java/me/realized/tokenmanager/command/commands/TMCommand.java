@@ -9,12 +9,13 @@ import me.realized.tokenmanager.command.commands.subcommands.OfflineCommand.Modi
 import me.realized.tokenmanager.command.commands.subcommands.OpenCommand;
 import me.realized.tokenmanager.command.commands.subcommands.ReloadCommand;
 import me.realized.tokenmanager.command.commands.subcommands.TransferCommand;
+import me.realized.tokenmanager.BuildFlags;
 import org.bukkit.command.CommandSender;
 
 public class TMCommand extends BaseCommand {
 
     public TMCommand(final TokenManagerPlugin plugin) {
-        super(plugin, "tm", Permissions.CMD_ADMIN, false);
+        super(plugin, BuildFlags.COMMANDPREFIX  + "tm" + BuildFlags.COMMANDSUFFIX, Permissions.CMD_ADMIN, false);
         child(
             new OfflineCommand(plugin, ModifyType.ADD, "give"),
             new OfflineCommand(plugin, ModifyType.REMOVE, "delete", "take"),
