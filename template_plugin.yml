@@ -1,0 +1,36 @@
+name: PLUGINBUILDNAME
+main: me.realized.tokenmanager.TokenManagerPlugin
+version: @VERSION@
+softdepend: [MVdWPlaceholderAPI, PlaceholderAPI, Vault]
+api-version: 1.14
+
+author: Realized
+description: A simple economy plugin for your server.
+website: https://www.spigotmc.org/resources/tokenmanager.8610/
+
+commands:
+   COMMANDPREFIXtokenCOMMANDSUFFIX:
+     description: Main command of TokenManager.
+     aliases: [COMMANDPREFIXtokensCOMMANDSUFFIX]
+   COMMANDPREFIXtmCOMMANDSUFFIX:
+     description: Administrative command of TokenManager.
+     aliases: [COMMANDPREFIXtokenmanagerCOMMANDSUFFIX]
+
+permissions:
+  PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.*:
+    description: Grants access to all TokenManager permissions.
+    children:
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.*: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.admin: true
+  PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.*:
+    description: Grants access to all sub commands of /COMMANDPREFIXtokenCOMMANDSUFFIX.
+    children:
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.send: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.top: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.shop: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.balance.others: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.sell: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.sell.all: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.worth: true
+      PERMISSIONPREFIXtokenmanagerPERMISSIONSUFFIX.use.worth.all: true

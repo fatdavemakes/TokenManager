@@ -93,7 +93,6 @@ shadowJar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     destinationDir = file("$rootDir/out/")
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-    baseName = 'TokenManager'
     classifier = null
 
     dependencies {
